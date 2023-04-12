@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View } from 'react-native';
 
-const App = () => {
+export const App = () => {
 
   // En View:
   // Primer paréntesis para indicar expresión de JavaScript.
@@ -27,5 +27,3 @@ const App = () => {
     </View>
   )
 }
-
-export default App;
