@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { Text, View, Button } from 'react-native';
+import { Text, View, Button, TouchableOpacity } from 'react-native';
 
 export const CounterScreen = () => {
 
     // Componentes de React Native: https://reactnative.dev/docs/components-and-apis
-
+    // Los textos siempre tienen que estar contenidos en un Text component.
     const [counter, setCounter] = useState(5);
 
     return (
@@ -21,11 +21,27 @@ export const CounterScreen = () => {
         }}>
             Contador: {counter}
         </Text>
-        <Button
-            onPress={() => setCounter(counter + 1)}
-            title="Learn More"
-            color="#841584"
-        />
+        <TouchableOpacity
+            onPress={()=>setCounter(counter + 1 )}
+            style={{
+                backgroundColor: 'purple',
+                height: 45,
+                margin: 10,
+            }}
+        >
+            <View>
+                <Text
+                    style={{
+                        color: 'white',
+                        fontSize: 30,
+                        textAlign: 'center',
+                        fontWeight: 'bold',
+                    }}
+                >
+                    Increment Counter
+                </Text>
+            </View>
+        </TouchableOpacity>
         </View>
     )
 }
