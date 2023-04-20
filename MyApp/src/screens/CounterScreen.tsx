@@ -5,7 +5,7 @@ export const CounterScreen = () => {
 
     // Componentes de React Native: https://reactnative.dev/docs/components-and-apis
     // Los textos siempre tienen que estar contenidos en un Text component.
-    const [counter, setCounter] = useState(5);
+    const [counter, setCounter] = useState(10);
 
     return (
         <View style={{
