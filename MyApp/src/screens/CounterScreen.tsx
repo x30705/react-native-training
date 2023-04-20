@@ -12,24 +12,37 @@ export const CounterScreen = () => {
         <View
             style={styles.screen}>
             {/* style={[styles.screen, styles.otroEstilo]} */}
+
             <Text style={styles.display}>
                 Contador: {counter}
             </Text>
+            
             <TouchableOpacity
                 onPress={()=>setCounter(counter + 1 )}
-                style={styles.button}
+                style={styles.floatingActionButtonPositionBottomRight}
             >
-                <Text
-                    style={{
-                        color: 'white',
-                        fontSize: 30,
-                        textAlign: 'center',
-                        fontWeight: 'bold',
-                    }}
-                >
-                    Increment Counter
-                </Text>
+                <View style={styles.floatingActionButton}>
+                    <Text
+                        style={styles.floatingActionButtonText}
+                    >
+                        +
+                    </Text>
+                </View>
             </TouchableOpacity>
+
+            <TouchableOpacity
+                onPress={()=>setCounter(counter - 1 )}
+                style={styles.floatingActionButtonPositionBottomLeft}
+            >
+                <View style={styles.floatingActionButton}>
+                    <Text
+                        style={styles.floatingActionButtonText}
+                    >
+                        -
+                    </Text>
+                </View>
+            </TouchableOpacity>
+
         </View>
     )
 }
@@ -49,9 +62,27 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         top: -200,
     },
-    button:{
+    floatingActionButtonPositionBottomRight:{
+        position: 'absolute',
+        bottom: 25,
+        right: 25
+    },
+    floatingActionButtonPositionBottomLeft:{
+        position: 'absolute',
+        bottom: 25,
+        left: 25
+    },
+    floatingActionButton:{
         backgroundColor: 'purple',
-        height: 45,
-        margin: 10,
+        width: 60,
+        height: 60,
+        borderRadius: 100,
+        justifyContent: 'center'
+    },
+    floatingActionButtonText:{
+        color: 'white',
+        fontSize: 25,
+        fontWeight: 'bold',
+        alignSelf: 'center'
     },
 });
