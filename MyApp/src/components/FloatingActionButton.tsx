@@ -10,6 +10,7 @@ interface Props {
 }
 
 // BottomRight solo se toma si no se envió otro valor.  
+// Comentario para probar commit.
 
 export const FloatingActionButton = ({caption, onPress, position='right'}: Props) => {
 
