@@ -1,5 +1,5 @@
 import React from 'react'
-import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, View, Text, StyleSheet, TouchableNativeFeedback, Platform } from 'react-native';
 
 // Usar ? para marcar una propiedad como opcional.
 
@@ -13,38 +13,57 @@ interface Props {
 
 export const FloatingActionButton = ({caption, onPress, position='right'}: Props) => {
 
-    // (props: Props) Sin des-estructurar
-    // Shadow Generator: https://ethercreative.github.io/react-native-shadow-generator/
-
-  return (
-        <TouchableOpacity
-        onPress={onPress}
-        
-        // Opción 1 para asignar un estilo condicional: Un objeto de estilos para cada posición:
-        // style={
-        //     (position === 'BottomLeft')
-        //     ? styles.floatingActionButtonPositionBottomLeft
-        //     : styles.floatingActionButtonPositionBottomRight
-        // }
-
-        // Opción 2 para asignar un estilo condicional: Un array de estilos complementarios para cada posición.
-        style={
-            [styles.floatingActionButton,
-            (position==='left')
-            ? styles.positionLeft
-            : styles.positionRight
-            ]
-        }
-    >
-        <View>
-            <Text
-                style={styles.floatingActionButtonText}
+    const ios = () => {
+        return(
+            <TouchableOpacity
+                onPress={onPress}
+                style={
+                    [styles.floatingActionButton,
+                    (position==='left')
+                    ? styles.positionLeft
+                    : styles.positionRight
+                    ]
+                }
             >
-                {caption}
-            </Text>
-        </View>
-    </TouchableOpacity>
-  )
+            <View>
+                <Text
+                    style={styles.floatingActionButtonText}
+                >
+                    {caption}
+                </Text>
+            </View>
+        </TouchableOpacity>
+        )
+    }
+
+    const android = () => {
+        return (
+            <View
+                style={
+                    [styles.floatingActionButton,
+                    (position==='left')
+                    ? styles.positionLeft
+                    : styles.positionRight
+                    ]
+                }
+            >
+                <TouchableNativeFeedback
+                    onPress={onPress}
+                    background={TouchableNativeFeedback.Ripple('grey', true, 30)}
+                >
+                    <View>
+                        <Text
+                            style={styles.floatingActionButtonText}
+                        >
+                            {caption}
+                        </Text>
+                    </View>
+                </TouchableNativeFeedback>
+            </View>
+          )
+    }
+
+    return (Platform.OS === 'ios') ? ios() : android();
 }
 
 const styles = StyleSheet.create({
